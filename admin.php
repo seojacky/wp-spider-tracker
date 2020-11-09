@@ -1,5 +1,5 @@
 <?php
-/*  Copyright 2020  Tony @ MnM Designs  (telegram : https://t.me/big_jacky)
+/*  Copyright 2020  big_jacky  (telegram : https://t.me/big_jacky)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -35,10 +35,10 @@ add_submenu_page( __FILE__, 'Spider Tracker - Settings', 'Settings', $wpstp_perm
 
 // wpstp_sublevel_stats() displays the page content for the first submenu Stats
 function wpstp_sublevel_stats() {
-	global $wpdb, $table_name, $wpstp_PATH;
+	global $wpdb, $table_name, $WPSTP_PATH;
 	$slideDelay = get_option( "wpstp_slide_delay" );
 	// jQuery
-	echo '	<script type="text/javascript" src="'. $wpstp_PATH .'/lib/jquery-1.2.3.js"></script>';
+	echo '	<script type="text/javascript" src="'. $WPSTP_PATH .'/lib/jquery-1.2.3.js"></script>';
 	echo '	<script type="text/javascript">
 				$(document).ready(function() {		
 					//toggle single
@@ -107,7 +107,7 @@ function wpstp_sublevel_stats() {
 				<table class="widefat" cellspacing="0" id="">
 					<thead>
 					<tr>
-						<th width="20"><img src="'.$wpstp_PATH.'/images/icon_info.png" alt="'.$row->useragent.'" border=0></th>
+						<th width="20"><img src="'.$WPSTP_PATH.'/images/icon_info.png" alt="'.$row->useragent.'" border=0></th>
 						<th width="20%"><a href="'.$row->url.'" target="_blank" title="Right-click &raquo; Open to follow Spider link" alt="'.$row->name.'">'.$row->name.'</a></th>
 						<th width="20%">'.$row->last_index_time.'</th>
 						<th width="*"><span title="'.$row->index_count.' hits since '.$row->set_from.'">'.$row->index_count.'</span></th>
@@ -155,7 +155,7 @@ function wpstp_sublevel_stats() {
 
 // wpstp_sublevel_settings() displays the page content for the second submenu Settings
 function wpstp_sublevel_settings() {
-	global $wpdb, $table_name, $wpstp_PATH;
+	global $wpdb, $table_name, $WPSTP_PATH;
 	echo '<div class="wrap"><div id="icon-options-general" class="icon32"><br /></div><h2>Spider Tracker - Settings</h2>';
 	
 	// Deal with REQUESTs
@@ -329,7 +329,7 @@ function wpstp_sublevel_settings() {
 						<div class="submit"><input class='button-primary' type="submit" value="Save Settings" /></div>
 					</td>
 					<td align="right" colspan="2">
-						<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6581225" target="_blank"><img src="<?php echo $wpstp_PATH; ?>/images/paypal_donate_cc.gif" border=0 alt="Your generosity is appreciated!" /></a>
+						<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6581225" target="_blank"><img src="<?php echo $WPSTP_PATH; ?>/images/paypal_donate_cc.gif" border=0 alt="Your generosity is appreciated!" /></a>
 					</td>
 				</tr>
 			</table>
@@ -394,7 +394,7 @@ function wpstp_sublevel_settings() {
 			$rows = $wpdb->get_results( "SELECT * FROM `".$table_name."` WHERE 1 ORDER BY `name` ASC" );						
 			foreach( $rows as $row ) {						
 				echo '	<tr>
-							<td width="20"><img src="'.$wpstp_PATH.'/images/icon_info.png" alt="'.$row->useragent.'" border=0></td>
+							<td width="20"><img src="'.$WPSTP_PATH.'/images/icon_info.png" alt="'.$row->useragent.'" border=0></td>
 							<td><a name="'.$row->id.'"></a>'.$row->name.'</td>
 							<td>'.$row->search_str.'</td>
 							<td><a href="'.$row->url.'" target="_blank">'.$row->url.'</a></td>							
@@ -403,19 +403,19 @@ function wpstp_sublevel_settings() {
 							<td>';			
 							if( $row->active == 'y' ) {
 								echo '<a href="?page='.$_GET['page'].'&active=n&id='.$row->id.'#'.$row->id.'">
-										<img src="'. $wpstp_PATH .'/images/icon_green.png" border=0 alt="Deactivate" /></a>';
+										<img src="'. $WPSTP_PATH .'/images/icon_green.png" border=0 alt="Deactivate" /></a>';
 							}else {
 								echo '<a href="?page='.$_GET['page'].'&active=y&id='.$row->id.'#'.$row->id.'">
-										<img src="'. $wpstp_PATH .'/images/icon_red.png" border=0 alt="Activate" /></a>';
+										<img src="'. $WPSTP_PATH .'/images/icon_red.png" border=0 alt="Activate" /></a>';
 							}
 				echo '		</td>
 							<td>
 								<a href="?page='.$_GET['page'].'&show=edit&id='.$row->id.'">
-									<img src="'. $wpstp_PATH .'/images/icon_edit.png" border=0 alt="Edit" /></a>
+									<img src="'. $WPSTP_PATH .'/images/icon_edit.png" border=0 alt="Edit" /></a>
 								<a href="?page='.$_GET['page'].'&amp;reset='.$row->id.'#list">
-									<img src="'. $wpstp_PATH .'/images/icon_reset.png" onclick="return confirm(\'Are you sure you want to reset all stats for '.addslashes($row->name).'?\nThis will reset the index count to zero and delete all index entries.\');" border=0 alt="Reset Stats" /></a>
+									<img src="'. $WPSTP_PATH .'/images/icon_reset.png" onclick="return confirm(\'Are you sure you want to reset all stats for '.addslashes($row->name).'?\nThis will reset the index count to zero and delete all index entries.\');" border=0 alt="Reset Stats" /></a>
 								<a href="?page='.$_GET['page'].'&amp;delete='.$row->id.'#list">
-									<img src="'. $wpstp_PATH .'/images/icon_delete.png" onclick="return confirm(\'Are you sure you want to completely delete '.addslashes($row->name).' and all its index entries?\');" border=0 alt="Delete" /></a>';
+									<img src="'. $WPSTP_PATH .'/images/icon_delete.png" onclick="return confirm(\'Are you sure you want to completely delete '.addslashes($row->name).' and all its index entries?\');" border=0 alt="Delete" /></a>';
 				echo '		</td>
 						</tr>';
 			} // end foreach						
