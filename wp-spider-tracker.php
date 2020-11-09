@@ -1,29 +1,18 @@
 <?php
-/*
-Plugin Name: Spider Tracker
-Plugin URI: http://mnm-designs.com/wordpress-plugins/wp-spider-tracker/
-Description: Tracks search engine and other web robots/spiders activity on your WordPress blog. <a href='admin.php?page=sub-page2'>Settings</a> | <a href='admin.php?page=spider-tracker/admin.php'>Stats</a> | <a href='http://mnm-designs.com/wordpress-plugins/wp-spider-tracker/'>Support</a> | <a href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6581225' target='_blank'>Donate</a>.
-Version: 1.0.3
-Author: Tony Fernandes
-Author URI: http://www.mnm-designs.com
-*/
 
-/*  Copyright 2009  Tony @ MnM Designs  (email : tony@mnm-designs.com)
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-*/
+/**
+ * Plugin name: WP Spider Tracker
+ * Description: Tracks search engine and other web robots/spiders activity on your WordPress blog. <a href='admin.php?page=sub-page2'>Settings</a> | <a href='admin.php?page=spider-tracker/admin.php'>Stats</a> | <a href='http://mnm-designs.com/wordpress-plugins/wp-spider-tracker/'>Support</a>
+ * Version: 1.0.3
+ * Author: seojacky
+ * Author URI: https://t.me/big_jacky
+ * Plugin URI: https://wordpress.org/plugins/wp-spider-tracker/
+ * GitHub Plugin URI: https://github.com/seojacky/wp-spider-tracker
+ * Text Domain: wp-spider-tracker
+ * Domain Path: /languages
+ * License: GPLv2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ */
 
 
 //###  SECURITY  ###//
