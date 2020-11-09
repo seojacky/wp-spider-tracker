@@ -1,6 +1,7 @@
 === Spider Tracker ===
 Contributors: seojacky
 Tags: stats, web spiders, web robots, tracking, statistics, spider tracker, web stats, wordpress stats, webbot, wordpress, plugin
+Requires PHP: 5.6.20
 Requires at least: 2.7.1
 Tested up to: 5.5
 Stable tag: 1.0.3
