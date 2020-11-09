@@ -5,12 +5,12 @@ Requires PHP: 5.6.20
 Requires at least: 2.7.1
 Tested up to: 5.5
 Stable tag: 1.0.3
-
-Spider Tracker tracks web spider's activity on your blog. It features a friendly user interface allowing you to track as many spiders as desired.
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Spider Tracker is a WordPress plugin developed by seojacky with one purpose. That purpose is to track web spiders' activity on your WordPress blog. It features a friendly user interface allowing you to define which spiders to track and how many recent index crawls to store for each.
+Spider Tracker tracks web spider's activity on your blog. It features a friendly user interface allowing you to track as many spiders as desired. That purpose is to track web spiders' activity on your WordPress blog. It features a friendly user interface allowing you to define which spiders to track and how many recent index crawls to store for each.
  
 The main statistics page will list all your active spiders showing real time stats for each including the last x pages visited by the spider (x is defined by you!), it also reports how many pages each spider has crawled since you set up that spider or since you last reset that spider's stats, information about the spider such as a link to its homepage, its function, characteristics and more.
 
