@@ -14,4 +14,4 @@ jobs:
       env:
         SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
         SVN_USERNAME: ${{ secrets.SVN_USERNAME }}       
-        SLUG: helper-lite-for-pagespeed # optional, remove if GitHub repo name matches SVN slug, including capitalization
+        SLUG: wp-spider-tracker # optional, remove if GitHub repo name matches SVN slug, including capitalization
