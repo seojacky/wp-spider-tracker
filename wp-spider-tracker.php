@@ -1,9 +1,8 @@
 <?php
-
 /**
  * Plugin name: WP Spider Tracker
  * Description: Tracks search engine and other web robots/spiders activity on your WordPress blog. <a href='admin.php?page=sub-page2'>Settings</a> | <a href='admin.php?page=spider-tracker/admin.php'>Stats</a> | <a href='http://mnm-designs.com/wordpress-plugins/wp-spider-tracker/'>Support</a>
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: seojacky
  * Author URI: https://t.me/big_jacky
  * Plugin URI: https://wordpress.org/plugins/wp-spider-tracker/
@@ -21,31 +20,29 @@ if (!defined('ABSPATH')) die("'tsk-tsk' You should only access this page via WP-
 
 //###  VARIABLES  ###//
 global $wpdb, $table_name, $wpstp_db_version, $wpstp_version, $wpstp_perms, $WPSTP_PATH;
-$table_name = $wpdb->prefix . "mnm_spider_tracker";
+$table_name = $wpdb->prefix . "wpstp_spider_tracker";
 $wpstp_db_version = "1.0";
-$wpstp_version = "1.0.3";
+$wpstp_version = "1.0.4";
 $wpstp_perms = 10;	 // http://codex.wordpress.org/User_Levels
-$WPSTP_PATH = WP_PLUGIN_URL."/wp-spider-tracker";
+$WPSTP_PATH = plugins_url('wp-spider-tracker');
 
 
 //###  HOOKS  ###//
 register_activation_hook( __FILE__, 'wpstp_install' );
 add_action( 'wp_head', 'wpstp_is_bot' );
 add_action( 'admin_menu', 'wpstp_admin_block' );
-add_action( 'admin_head', 'wpstp_admin_head' );
+
 
 
 //###  ADMINISTRATION  ###//
-function wpstp_admin_head() {
-	global $WPSTP_PATH;
-	// load CSS and SCRIPT pages to the admin head
-    echo '
-		<!-- Start of MnM Spider Tracker includes -->
-		<link href="'. $WPSTP_PATH .'/wpstp_styles.css" rel="stylesheet" type="text/css" media="screen, projection" />
-		<!-- End of MnM Spider Tracker includes -->
 
-';
-}
+	// load CSS and SCRIPT pages to the admin head 
+add_action( 'admin_enqueue_scripts', function () {
+wp_enqueue_style( 'wpstp-admin-style', $WPSTP_PATH .'/wpstp_styles.css' );
+});
+
+
+
 
 function wpstp_admin_block() {
 	//Include menus
