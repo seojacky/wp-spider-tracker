@@ -3,7 +3,7 @@
 /**
  * Plugin name: WP Spider Tracker
  * Description: Tracks search engine and other web robots/spiders activity on your WordPress blog. <a href='admin.php?page=sub-page2'>Settings</a> | <a href='admin.php?page=spider-tracker/admin.php'>Stats</a> | <a href='http://mnm-designs.com/wordpress-plugins/wp-spider-tracker/'>Support</a>
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: seojacky
  * Author URI: https://t.me/big_jacky
  * Plugin URI: https://wordpress.org/plugins/wp-spider-tracker/
@@ -23,7 +23,7 @@ if (!defined('ABSPATH')) die("'tsk-tsk' You should only access this page via WP-
 global $wpdb, $table_name, $wpstp_db_version, $wpstp_version, $wpstp_perms, $WPSTP_PATH;
 $table_name = $wpdb->prefix . "wpstp_spider_tracker";
 $wpstp_db_version = "1.0";
-$wpstp_version = "1.0.4";
+$wpstp_version = "1.0.5";
 $wpstp_perms = 10;	 // http://codex.wordpress.org/User_Levels
 $WPSTP_PATH = plugins_url('wp-spider-tracker');
 
@@ -39,7 +39,7 @@ add_action( 'admin_menu', 'wpstp_admin_block' );
 
 	// load CSS and SCRIPT pages to the admin head 
 add_action( 'admin_enqueue_scripts', function () {
-wp_enqueue_style( 'wpstp-admin-style', plugin_dir_url(__FILE__) .'wpstp_styles.css' );
+wp_enqueue_style( 'wpstp-admin-style', plugin_dir_url(__FILE__) .'css/wpstp_styles.css' );
 wp_enqueue_script( 'wpstp-admin-script', plugin_dir_url(__FILE__) .'js/wpstp_scripts.js', array('jquery') );
 });
 

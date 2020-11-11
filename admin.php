@@ -34,33 +34,13 @@ add_submenu_page( __FILE__, 'Spider Tracker - Settings', 'Settings', $wpstp_perm
 
 
 
-
 // wpstp_sublevel_stats() displays the page content for the first submenu Stats
 function wpstp_sublevel_stats() {
 	global $wpdb, $table_name, $WPSTP_PATH;
 	$slideDelay = get_option( "wpstp_slide_delay" );
 	// jQuery
-
-	echo '	<script type="text/javascript">
-				jQuery(document).ready(function($) {		
-					//toggle single
-					$(".wpstp_header").click(function(){
-						$(this).next(".wpstp_subTable").slideToggle('. $slideDelay .')
-						return false;
-					});			
-					//collapse all
-					$(".collapse_all").click(function(){
-						$(".wpstp_subTable").slideUp('. $slideDelay .')
-						return false;
-					});		
-					//expand all
-					$(".expand_all").click(function(){
-						$(".wpstp_subTable").slideDown('. $slideDelay .')
-						return false;
-					});		
-				});	
-			</script>';
 	
+
 	// Set preference expanded/collapsed state
 	// Default is c='collapse' but if 'c' is not set it will default to 'expand' ('e')
 	if( get_option( 'wpstp_log_state' ) == 'c' ) {
@@ -404,19 +384,19 @@ function wpstp_sublevel_settings() {
 							<td>'.$row->index_count.'</td>
 							<td>';			
 							if( $row->active == 'y' ) {
-								echo '<a href="?page='.sanitize_text_field($_GET['page']).'&active=n&id='.$row->id.'#'.$row->id.'">
+								echo '<a href="?page='. esc_url($_GET['page']).'&active=n&id='.$row->id.'#'.$row->id.'">
 										<img src="'. $WPSTP_PATH .'/images/icon_green.png" border=0 alt="Deactivate" /></a>';
 							}else {
-								echo '<a href="?page='.sanitize_text_field($_GET['page']).'&active=y&id='.$row->id.'#'.$row->id.'">
+								echo '<a href="?page='.esc_url($_GET['page']).'&active=y&id='.$row->id.'#'.$row->id.'">
 										<img src="'. $WPSTP_PATH .'/images/icon_red.png" border=0 alt="Activate" /></a>';
 							}
 				echo '		</td>
 							<td>
-								<a href="?page='.sanitize_text_field($_GET['page']).'&show=edit&id='.$row->id.'">
+								<a href="?page='.esc_url($_GET['page']).'&show=edit&id='.$row->id.'">
 									<img src="'. $WPSTP_PATH .'/images/icon_edit.png" border=0 alt="Edit" /></a>
-								<a href="?page='.sanitize_text_field($_GET['page']).'&amp;reset='.$row->id.'#list">
+								<a href="?page='.esc_url($_GET['page']).'&amp;reset='.$row->id.'#list">
 									<img src="'. $WPSTP_PATH .'/images/icon_reset.png" onclick="return confirm(\'Are you sure you want to reset all stats for '.addslashes($row->name).'?\nThis will reset the index count to zero and delete all index entries.\');" border=0 alt="Reset Stats" /></a>
-								<a href="?page='.sanitize_text_field($_GET['page']).'&amp;delete='.$row->id.'#list">
+								<a href="?page='.esc_url($_GET['page']).'&amp;delete='.$row->id.'#list">
 									<img src="'. $WPSTP_PATH .'/images/icon_delete.png" onclick="return confirm(\'Are you sure you want to completely delete '.addslashes($row->name).' and all its index entries?\');" border=0 alt="Delete" /></a>';
 				echo '		</td>
 						</tr>';
