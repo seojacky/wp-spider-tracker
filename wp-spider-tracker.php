@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin name: WP Spider Tracker
  * Description: Tracks search engine and other web robots/spiders activity on your WordPress blog. <a href='admin.php?page=sub-page2'>Settings</a> | <a href='admin.php?page=spider-tracker/admin.php'>Stats</a> | <a href='http://mnm-designs.com/wordpress-plugins/wp-spider-tracker/'>Support</a>
