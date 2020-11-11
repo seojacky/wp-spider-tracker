@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin name: WP Spider Tracker
  * Description: Tracks search engine and other web robots/spiders activity on your WordPress blog. <a href='admin.php?page=sub-page2'>Settings</a> | <a href='admin.php?page=spider-tracker/admin.php'>Stats</a> | <a href='http://mnm-designs.com/wordpress-plugins/wp-spider-tracker/'>Support</a>
@@ -38,7 +39,8 @@ add_action( 'admin_menu', 'wpstp_admin_block' );
 
 	// load CSS and SCRIPT pages to the admin head 
 add_action( 'admin_enqueue_scripts', function () {
-wp_enqueue_style( 'wpstp-admin-style', $WPSTP_PATH .'/wpstp_styles.css' );
+wp_enqueue_style( 'wpstp-admin-style', plugin_dir_url(__FILE__) .'wpstp_styles.css' );
+wp_enqueue_script( 'wpstp-admin-script', plugin_dir_url(__FILE__) .'js/wpstp_scripts.js', array('jquery') );
 });
 
 
