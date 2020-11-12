@@ -142,26 +142,26 @@ function wpstp_sublevel_settings() {
 	
 	// Deal with REQUESTs
 	if ( count( $_REQUEST ) > 0 ) { 
-		if ( sanitize_text_field($_POST['wpstp_submitted_setts']) == "yes" ) {			// update settings
-			$wpstp_slide_delay = sanitize_text_field($_POST['wpstp_slide_delay']);
+		if ( $_POST['wpstp_submitted_setts'] == "yes" ) {			// update settings
+			$wpstp_slide_delay = $_POST['wpstp_slide_delay'];
 			if ( is_numeric( $wpstp_slide_delay ) && !empty( $wpstp_slide_delay ) )
 				update_option( "wpstp_slide_delay", $wpstp_slide_delay );
 			else $msg = "Warning: Expected numeric value for '<b>Slide effect delay</b>'";				
 			
-			$wpstp_max_rows_per_spider = sanitize_text_field($_POST['wpstp_max_rows_per_spider']);
+			$wpstp_max_rows_per_spider = $_POST['wpstp_max_rows_per_spider'];
 			if ( is_numeric( $wpstp_max_rows_per_spider ) && !empty( $wpstp_max_rows_per_spider ) )
 				update_option( "wpstp_max_rows_per_spider", $wpstp_max_rows_per_spider );
 			else $msg = "Warning: Expected numeric value for '<b>Max pages per spider</b>'";			
 			
 			if ( $msg == "" ) {
-				update_option( "wpstp_log_state", sanitize_text_field($_POST['wpstp_log_state']) );
-				update_option( "wpstp_pct_bar_color", sanitize_text_field($_POST['wpstp_pct_bar_color']) );
+				update_option( "wpstp_log_state", $_POST['wpstp_log_state'] );
+				update_option( "wpstp_pct_bar_color", $_POST['wpstp_pct_bar_color'] );
 				$msg = 'Settings saved.';
 			}
 		}elseif ( sanitize_text_field($_POST['wpstp_submitted_new']) == "yes" ) {		// add new spider
-			$name 		= stripslashes(sanitize_text_field($_POST['name']) );
-			$search_str	= stripslashes(sanitize_text_field($_POST['search_str']) );
-			$url		= stripslashes(sanitize_text_field($_POST['url']) );
+			$name 		= stripslashes($_POST['name'] );
+			$search_str	= stripslashes($_POST['search_str'] );
+			$url		= stripslashes($_POST['url'] );
 			if( empty( $name ) || empty( $search_str ) ) {
 				$msg_new = 'Warning: Both \'<b>Name</b>\' and \'<b>Search String</b>\' are required - please fill them in and retry.';
 			}else {
@@ -174,25 +174,25 @@ function wpstp_sublevel_settings() {
 					if( $bot ) $msg_new = 'New spider added!'; else $msg_new = "Error: Could not insert new spider details.";
 				}
 			}
-		} elseif ( null !== sanitize_text_field($_GET['active'] ) )  {						// activate or deactivate spider
-			$active	= sanitize_text_field($_GET['active']);
-			$id		= sanitize_text_field($_GET['id']);
+		} elseif ( null !== $_GET['active']  )  {						// activate or deactivate spider
+			$active	= $_GET['active'];
+			$id		= $_GET['id'];
 			if( ($active == "y" || $active == "n") && is_numeric($id) ) {
 				$wpdb->query( "UPDATE `".$table_name."` SET `active` = '".$active."' WHERE `id` = ".$id );
 			}
-		} elseif ( sanitize_text_field($_POST['wpstp_submitted_edit']) == "yes" ) {		// edit spider
-			$id 		= sanitize_text_field($_POST['wpstp_id']);
-			$name 		= stripslashes(sanitize_text_field($_POST['name']) );
-			$search_str	= stripslashes(sanitize_text_field($_POST['search_str']) );
-			$url		= stripslashes(sanitize_text_field($_POST['url']) );
+		} elseif ( $_POST['wpstp_submitted_edit'] == "yes" ) {		// edit spider
+			$id 		= $_POST['wpstp_id'];
+			$name 		= stripslashes($_POST['name'] );
+			$search_str	= stripslashes($_POST['search_str'] );
+			$url		= stripslashes($_POST['url'] );
 			if( empty( $name ) || empty( $search_str ) ) {
 				$msg_list = 'Warning: Both \'<b>Name</b>\' and \'<b>Search String</b>\' are required - please fill them in and retry.';
 			}else {
 				$bot = $wpdb->query( "UPDATE `".$table_name."` SET `name` = '".$name."', `search_str` = '".$search_str."', `url` = '".$url."' WHERE `id` = ". $id );
 				if( $bot ) $msg_list = $name . ' successfully edited!'; else $msg_list = "Error: Could not save changes.";
 			}
-		}elseif ( is_numeric( sanitize_text_field($_GET['reset'] ) ) )  {					// reset spider stats
-			$id = sanitize_text_field($_GET['reset']);
+		}elseif ( is_numeric( $_GET['reset'] )  )  {					// reset spider stats
+			$id = $_GET['reset'];
 			$name = $wpdb->get_var( "SELECT `name` FROM `".$table_name."` WHERE `id` = ". $id );
 			$reset = $wpdb->query( "UPDATE `".$table_name."` SET `index_count` = 0 WHERE `id` = ".$id );
 			if( $reset ) {
@@ -201,8 +201,8 @@ function wpstp_sublevel_settings() {
 			}else {
 				$msg_list = 'Error: Could not reset stats for '.$name;
 			}
-		}elseif ( is_numeric( sanitize_text_field($_GET['delete'] ) ) ) {					// delete spider
-			$id = sanitize_text_field($_GET['delete']);
+		}elseif ( is_numeric($_GET['delete']  ) ) {					// delete spider
+			$id = $_GET['delete'];
 			$del = $wpdb->query( "DELETE FROM `".$table_name."` WHERE `id` = ".$id );
 			if( $del ) {
 				$del_log = $wpdb->query( "DELETE FROM `".$table_name."_log` WHERE `id` = ".$id );
@@ -224,7 +224,7 @@ function wpstp_sublevel_settings() {
 			
 			?>				
 			<a name="edit"></a><h2>Editing '<?php echo $bot->name; ?>'</h2>
-			<form id="wpstp_edit_frm" action="?page=<?php echo sanitize_text_field($_GET['page']); ?>&edit=<?php echo $id; ?>#list" method="post">
+			<form id="wpstp_edit_frm" action="?page=<?php echo $_GET['page']; ?>&edit=<?php echo $id; ?>#list" method="post">
 			<table class="widefat" cellspacing="0" id="">
 				<thead>
 				<tr>
@@ -327,7 +327,7 @@ function wpstp_sublevel_settings() {
 			// Display 'new spider' messages at the header of the form
 			if( $msg_new ) echo '<div id="message" class="updated fade"><p>'.$msg_new.'</p></div>';
 			?>
-			<form id="wpstp_new_frm" action="?page=<?php echo sanitize_text_field($_GET['page']); ?>#new" method="post">
+			<form id="wpstp_new_frm" action="?page=<?php echo $_GET['page']; ?>#new" method="post">
 
 			<table class="widefat" cellspacing="0" id="">
 				<thead>
@@ -384,19 +384,19 @@ function wpstp_sublevel_settings() {
 							<td>'.$row->index_count.'</td>
 							<td>';			
 							if( $row->active == 'y' ) {
-								echo '<a href="?page='. esc_url($_GET['page']).'&active=n&id='.$row->id.'#'.$row->id.'">
+								echo '<a href="?page='. $_GET['page'].'&active=n&id='.$row->id.'#'.$row->id.'">
 										<img src="'. $WPSTP_PATH .'/images/icon_green.png" border=0 alt="Deactivate" /></a>';
 							}else {
-								echo '<a href="?page='.esc_url($_GET['page']).'&active=y&id='.$row->id.'#'.$row->id.'">
+								echo '<a href="?page='.$_GET['page'].'&active=y&id='.$row->id.'#'.$row->id.'">
 										<img src="'. $WPSTP_PATH .'/images/icon_red.png" border=0 alt="Activate" /></a>';
 							}
 				echo '		</td>
 							<td>
-								<a href="?page='.esc_url($_GET['page']).'&show=edit&id='.$row->id.'">
+								<a href="?page='.$_GET['page'].'&show=edit&id='.$row->id.'">
 									<img src="'. $WPSTP_PATH .'/images/icon_edit.png" border=0 alt="Edit" /></a>
-								<a href="?page='.esc_url($_GET['page']).'&amp;reset='.$row->id.'#list">
+								<a href="?page='.$_GET['page'].'&amp;reset='.$row->id.'#list">
 									<img src="'. $WPSTP_PATH .'/images/icon_reset.png" onclick="return confirm(\'Are you sure you want to reset all stats for '.addslashes($row->name).'?\nThis will reset the index count to zero and delete all index entries.\');" border=0 alt="Reset Stats" /></a>
-								<a href="?page='.esc_url($_GET['page']).'&amp;delete='.$row->id.'#list">
+								<a href="?page='.$_GET['page'].'&amp;delete='.$row->id.'#list">
 									<img src="'. $WPSTP_PATH .'/images/icon_delete.png" onclick="return confirm(\'Are you sure you want to completely delete '.addslashes($row->name).' and all its index entries?\');" border=0 alt="Delete" /></a>';
 				echo '		</td>
 						</tr>';
